@@ -1,0 +1,17 @@
+.required-feedback {
+    width: 100%;
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #dc3545;
+}
+
+.is-invalid{
+    border-bottom-color: #dc3545;
+}
+
+.select-input{
+    height:32px;
+}
+.mt-10{
+    margin-top: 10px;
+}
