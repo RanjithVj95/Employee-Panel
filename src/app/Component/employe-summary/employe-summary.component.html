@@ -1,0 +1,68 @@
+
+<app-header></app-header>
+<div class="container mt-5">
+
+   
+    <div class="row">
+        <div class="policyholder_bg">
+
+            <div class="table-responsive">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="name">Name <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="dob">Date of Birth <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="name">Role <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="phonerole">Phone No <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="gender">Gender <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                            <th [appSort]="employeDetail" data-order="desc" data-name="address">Address <i class="fa fa-sort" style="cursor:pointer"></i></th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody class="table table-striped">
+                        <tr  *ngFor="let data of employeDetail | paginate : {   itemsPerPage: pageSize, currentPage: page, totalItems: employeDetail?.length}; let i = index">
+                            
+                            <td>{{data.name}}</td>
+                            <td>{{data.dob}}</td>
+                            <td>{{data.role == "A" ? "Admin" : data.role == "M"  ? "Manager": data.role == "H"  ? "HR" : "Developer"}}</td>
+                            <td>{{data.phone}}</td>
+                            <td>{{data.gender == "M" ? "Male" : "Female"}}</td>
+                            <td>{{data.address}}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="employeDetail.length == 0">
+                        <tr>
+                            <td colspan="7">
+                                <div class="no-data text-center">
+                                    <div>No Records</div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="row m-t-20 width_100" *ngIf="employeDetail.length > 0">
+                <div class="col-md-4 txt-ctr">
+                </div>
+                <div class="col-md-8 text-end" >
+                    <pagination-controls previousLabel="Previous"
+                        (pageChange)="handlePageChange($event)" nextLabel="Next">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-10"></div>
+
+        <div class="col-md-2">
+            <input type="button" value="Clear" (click)="clearAll()"
+                class="form_button step_one_next" name="" >
+        </div>
+    </div>
+
+
+</div>
+<app-footer></app-footer>

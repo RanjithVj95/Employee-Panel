@@ -1,0 +1,130 @@
+
+<app-header></app-header>
+<div class="container mt-5">
+
+    <div class="accordion" id="accordionPanelsStayOpenExample1">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                    aria-controls="panelsStayOpen-collapseOne" >
+                    Employee Details
+                </button>
+            </h2>
+            <form  [formGroup]="employeDetails" >
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Name<span style="color: red; ">*</span></label>
+                                    <input type="text" class="width_100 form_input" placeholder="e.g. Smith"
+                                        name="name" formControlName="name"   [ngClass]="{ 'is-invalid': submitted && employeDetails.controls['name'].errors }" required appAllowOnlyChar>
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['name'].errors " class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['name'].errors['required']">Name is required</div>
+                                  </div>
+                            </div>
+                           
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>dob<span style="color: red; ">*</span></label>
+                                    <input type="date" class="width_100 form_input" placeholder="e.g dd/mm/yyyy"  [max]='maxDate'
+                                        name="dob" formControlName="dob" [ngClass]="{ 'is-invalid': submitted && employeDetails.controls['dob'].errors }">
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['dob'].errors" class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['dob'].errors['required']">DOB is required</div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Role<span style="color: red; ">*</span></label>
+                                    <select class="width_100 form_input select-input" formControlName="role" [ngClass]="{ 'is-invalid': submitted && employeDetails.controls['role'].errors }">
+                                        <button class="btn width_100 dropdown-toggle " type="button" id="gender_drop"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="gender_drop_title">--Select--</span>
+                                        </button>
+
+                                        <option value="" disabled>
+                                            Please Select
+                                        </option>
+
+                                        <option value="A">Admin</option>
+                                        <option value="M">Manager</option>
+                                        <option value="H">HR</option>
+                                        <option value="D">Developer</option>
+                                    </select>
+
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['role'].errors" class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['role'].errors['required']">Role is required</div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Phone No<span style="color: red; ">*</span></label>
+                                    <input type="text" class="width_100 form_input"
+                                        placeholder="e.g. +91 9383738223" name="phone" formControlName="phone" [ngClass]="{ 'is-invalid': submitted && employeDetails.controls['phone'].errors }" appAllowOnlyNumber>
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['phone'].errors" class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['phone'].errors['required']">Phone No is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                           
+                            <div class="col-md-3">
+                                
+                                <div class="form-group">
+                                    <label>Gender<span style="color: red; ">*</span></label><br>
+                                 <div class="mt-10">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="male" value="M" formControlName="gender">
+                                        <label class="form-check-label" for="male">Male</label>
+                                      </div>
+                                      <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="gender" id="female" value="F" formControlName="gender">
+                                        <label class="form-check-label" for="female">Female</label>
+                                      </div> 
+                                 </div>
+
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['gender'].errors" class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['gender'].errors['required']">Gender is required</div>
+                                  </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label>Address<span style="color: red; ">*</span></label>
+                                    <textarea type="text" class="width_100 form_input" placeholder="e.g xyz"
+                                        name="address" formControlName="address" [ngClass]="{ 'is-invalid': submitted && employeDetails.controls['address'].errors }">
+                                    </textarea>
+                                </div>
+                                <div *ngIf="submitted && employeDetails.controls['address'].errors" class="required-feedback">
+                                    <div *ngIf="employeDetails.controls['address'].errors['required']">Address is required</div>
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-8"></div>
+
+        <div class="col-md-2">
+            <input type="button" value="Clear" (click)="clearAll()"
+                class="form_button step_one_next" name="" >
+        </div>
+        <div class="col-md-2">
+            <input type="submit" value="Submit"  (click)="onSubmit()"
+                class="form_button step_one_next" name="">
+        </div>
+    </div>
+
+
+</div>
+<app-footer></app-footer>
